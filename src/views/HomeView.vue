@@ -627,7 +627,6 @@
         ——— PAGE WRAPPER
         ===================================== -->
         <div class="page-wrapper">
-          
           <!-- Header -->
           <header class="main-header " id="header">
             <nav class="navbar navbar-static-top navbar-expand-lg">
@@ -675,6 +674,19 @@
                       <div class="card-header card-header-border-bottom d-flex justify-content-between">
                         <h2>Inventory</h2>
                       </div>
+                      <div class="row justify-content-between top-information">
+                        <div class="dataTables_length" id="basic-data-table_length">
+                          <label>Show <select name="basic-data-table_length" aria-controls="basic-data-table" class="custom-select custom-select-sm form-control form-control-sm">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                          </select> entries</label>
+                        </div>
+                        <div id="basic-data-table_filter" class="dataTables_filter">
+                          <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="basic-data-table"></label>
+                        </div>
+                      </div>
                       <div class="card-body">
                         <div class="hoverable-data-table">
                           <table id="hoverable-data-table" class="table table-hover nowrap" style="width:100%">
@@ -689,10 +701,11 @@
                                 <th>Mileage</th>
                                 <th>Price</th>
                                 <th>Dealership</th>
+                                <th>Sell</th>
                               </tr>
                             </thead>
                             <tbody>
-                              <tr v-for="car in cars">
+                              <tr v-for="car in inventory">
                                 <td>{{car.year}}</td>
                                 <td>{{car.make}}</td>
                                 <td>{{car.model}}</td>
@@ -702,7 +715,7 @@
                                 <td>{{car.mileage}}</td>
                                 <td>{{car.price}}</td>
                                 <td>{{car.dealer_id}}</td>
-                                <button>Sell</button>
+                                <td><button type="button" class="mb-1 btn btn-sm btn-outline-success">Sell</button></td>
                               </tr>
                             </tbody>
                           </table>
@@ -731,6 +744,7 @@ export default {
       users: [],
       dealers: [],
       cars: [],
+      inventory: [],
       email: "",
       password: "",
     };
@@ -738,17 +752,20 @@ export default {
   created: function() {
     axios.get("/api/users").then(response => {
       this.users = response.data;
-      console.log(this.users)
+      console.log("Users...", this.users)
     });
     axios.get("/api/dealers").then(response => {
       this.dealers = response.data;
-      console.log(this.dealers)
+      console.log("Dealers...", this.dealers)
     });
     axios.get("/api/cars").then(response => {
       this.cars = response.data;
-      console.log(this.cars)
+      console.log("Cars...", this.cars)
     });
-
+    axios.get("/api/cars/inventory").then(response => {
+      this.inventory = response.data;
+      console.log("Current Inventory...", this.inventory)
+    });
 
   },
   methods: {
@@ -770,7 +787,7 @@ export default {
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
-          this.$router.push("/profile");
+          this.$router.push("/HomeView");
         })
         .catch(error => {
           this.errors = ["Invalid email or password"];
