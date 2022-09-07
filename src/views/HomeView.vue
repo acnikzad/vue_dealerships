@@ -714,7 +714,7 @@
                                 <td>{{car.car_type}}</td>
                                 <td>{{car.mileage}}</td>
                                 <td>{{car.price}}</td>
-                                <td>{{car.dealer_id}}</td>
+                                <td>{{car.dealer.name}}</td>
                                 <td><button type="button" class="mb-1 btn btn-sm btn-outline-success">Sell</button></td>
                               </tr>
                             </tbody>
