@@ -281,7 +281,7 @@
                 </div>
 
                 <div class="media-body align-self-center">
-                  <h4 class="text-primary mb-2">5300</h4>
+                  <h4 class="text-primary mb-2">This is Manufacturer</h4>
                   <!-- <p>{{dealer.car.count}}</p> -->
                 </div>
               </div>
