@@ -37,12 +37,39 @@
                           <div class="control-indicator"></div>
                         </label>
                       </div>
-                      <p><a class="text-blue" href="#">Forgot Your Password?</a></p>
                     </div>
                     <button type="submit" class="btn btn-lg btn-primary btn-block mb-4">Sign In</button>
                     <p>Don't have an account yet ?
-                      <a class="text-blue" href="sign-up.html">Too Bad</a>
+                      <a class="text-blue" href="sign-up.html">Try These</a>
                     </p>
+                    <div class="row">
+                      <div class="col-md col-lg col-xl">
+                        <div class="media widget-media p-4 bg-white border">
+                          <div class="icon rounded-circle mr-4 bg-primary">
+                            <i class="mdi mdi-account-outline text-white "></i>
+                          </div>
+
+                          <div class="media-body align-self-center">
+                            <h4 class="text-primary mb-2">bob@samos.com</h4>
+                            <p>password</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md col-lg col-xl">
+                        <div class="media widget-media p-4 bg-white border">
+                          <div class="icon rounded-circle mr-4 bg-warning">
+                            <i class="mdi mdi-account-outline text-white "></i>
+                          </div>
+
+                          <div class="media-body align-self-center">
+                            <h4 class="text-warning mb-2">matt@grove.com</h4>
+                            <p>password</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </form>
