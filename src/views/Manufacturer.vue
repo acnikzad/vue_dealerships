@@ -272,7 +272,6 @@
             </nav>
           </header>
           
-          
           <div class="row">
             <div class="col-md-6 col-lg-6 col-xl-3">
               <div class="media widget-media p-4 bg-white border">
@@ -289,145 +288,163 @@
           </div>
           <div class="content-wrapper">
             <div class="content">
-              <!--   <div>
-                  <h3>Search for cars here:</h3><input type="text" v-model="searchTerm" list="models">
-                  <datalist id="titles">
-                    <option v-for="car in cars">{{ car.model }}</option>
-                  </datalist>
-                </div> -->
- <!--                <transition-group appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
-                  <div v-for="car in orderBy(filterBy(cars, searchTerm, 'makes', 'models'), sortAttribute, sortOrder)" v-bind:class="{selected: car.selected}" v-bind:key="car.id">
-                    <button v-on:click="selectCar(car)">Select Car</button>
-                    <p>id: {{ car.id }}</p>
-                    <p>Make: {{ car.make }}</p>
-                    <p>Model: {{ car.model }}</p>
-                    <p>Drivetrain: {{ car.drivetrain }}</p>
-                    <br>
-
-                    <button v-on:click="toggleInfo(car)">See more info</button>
-
-                    <div v-if="currentCar === car">
-                      <p>prep_time: {{ car.prep_time }}</p>
-                      <p>directions: {{ car.directions }}</p>
-
-                      <p>Title: <input type="text" v-model="car.title"></p>
-                      <p>Ingredients: <input type="text" v-model="car.ingredients"></p>
-                      <p>Directions: <input type="text" v-model="car.directions"></p>
-                      <p>Prep Time: <input type="text" v-model="car.prep_time"></p>
-                      <p>Chef: <input type="text" v-model="car.chef"></p>
-                      <button v-on:click="updateCar(car)">Update the Car</button>
-                      <button v-on:click="destroyCar(car)">Destroy Car</button>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="card card-default">
+                    <div class="card-header card-header-border-bottom">
+                      <h2>Create Car</h2>
                     </div>
-                    <hr>
-                  </div>
-                </transition-group> -->
 
-                <div class="row">
-                  <div class="col-12">
-                    <div class="card card-default">
-                      <div class="card-header card-header-border-bottom d-flex justify-content-between">
-                        <h2>Inventory</h2>
-                      </div>
-                      <div class="row justify-content-between top-information">
-                        <div class="dataTables_length" id="basic-data-table_length">
-                          <label>Show <select name="basic-data-table_length" aria-controls="basic-data-table" class="custom-select custom-select-sm form-control form-control-sm">
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                          </select> entries</label>
+                    <div class="card-body">
+                      <form>
+                        <div class="form-group">
+                          <label for="exampleFormControlInput1">Year</label>
+                          <input type="number" class="form-control" id="year" placeholder="2015">
                         </div>
-                        <div id="basic-data-table_filter" class="dataTables_filter">
-                          <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="basic-data-table"></label>
+                        <div class="form-group">
+                          <label for="exampleFormControlPassword">Make</label>
+                          <select class="form-control" v-model="newDrinkType">
+                            <option>Acura</option>
+                            <option>BMW</option>
+                            <option>Cheverolet</option>
+                            <option>Dodge</option>
+                            <option>Ford</option>
+                            <option>Honda</option>
+                            <option>Nissan</option>
+                            <option>Subaru</option>
+                            <option>Toyota</option>
+                            <option>Volkswagon</option>
+                          </select>
                         </div>
-                      </div>
-<!--                        <table id="basic-data-table" class="table nowrap" style="width:100%">
-                        <thead>
-                         <tr>
-                          <th>First name</th>
-                          <th>Last name</th>
-                          <th>Position</th>
-                          <th>Office</th>
-                          <th>Age</th>
-                          <th>Start date</th>
-                          <th>Salary</th>
-                          <th>Extn.</th>
-                          <th>E-mail</th>
-                         </tr>
-                        </thead>
-
-                        <tbody>
-                         <tr>
-                          <td>Tiger</td>
-                          <td>Nixon</td>
-                          <td>System Architect</td>
-                          <td>Edinburgh</td>
-                          <td>61</td>
-                          <td>2011/04/25</td>
-                          <td>$320,800</td>
-                          <td>5421</td>
-                          <td>t.nixon@datatables.net</td>
-                         </tr>
-                        </tbody>
-                       </table> -->
-                      <div class="card-body">
-                        <div class="hoverable-data-table">
-                          <table id="hoverable-data-table" class="table table-hover nowrap" style="width:100%">
-                            <thead>
-                              <tr>
-                                <th>Year</th>
-                                <th>Make</th>
-                                <th>Model</th>
-                                <th>Color</th>
-                                <th>Drivetrain</th>
-                                <th>Type</th>
-                                <th>Mileage</th>
-                                <th>Price</th>
-                                <th>Dealership</th>
-                                <th>Sell</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr v-for="car in inventory">
-                                <td>{{car.year}}</td>
-                                <td>{{car.make}}</td>
-                                <td>{{car.model}}</td>
-                                <td>{{car.color}}</td>
-                                <td>{{car.drivetrain}}</td>
-                                <td>{{car.car_type}}</td>
-                                <td>{{car.mileage}}</td>
-                                <td>{{car.price}}</td>
-                                <td>{{car.dealer.name}}</td>
-                                <td><button type="button" class="mb-1 btn btn-sm btn-outline-success" data-toggle="modal" data-target="#exampleModal">Sell</button></td>
-                              </tr>
-                            </tbody>
-                          </table>
+                        <div class="form-group">
+                          <label for="exampleFormControlPassword">Model</label>
+                          <select class="form-control" v-model="newDrinkType">
+                            <option>Acura</option>
+                            <option>BMW</option>
+                            <option>Cheverolet</option>
+                            <option>Dodge</option>
+                            <option>Ford</option>
+                            <option>Honda</option>
+                            <option>Nissan</option>
+                            <option>Subaru</option>
+                            <option>Toyota</option>
+                            <option>Volkswagon</option>
+                          </select>
                         </div>
-                      </div>
-                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Sell Car</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
+                        <div class="form-group">
+                          <label for="exampleFormControlSelect12">Color</label>
+                          <select class="form-control" id="exampleFormControlSelect12">
+                            <option>Blue</option>
+                            <option>Black</option>
+                            <option>White</option>
+                            <option>Silver</option>
+                            <option>Red</option>
+                            <option>Green</option>
+                            <option>Charcoal</option>
+                          </select>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-12 col-md-3 text-right">
+                            <label for="Radios">Drivetrain</label>
+                          </div>
+                          <div class="col-12 col-md-9">
+                            <label class="control control-radio">FWD
+                              <input type="radio" name="radio1" checked="checked" />
+                              <div class="control-indicator"></div>
+                            </label>
 
-                            <div class="modal-body">
-                              Modal body text goes here.
-                            </div>
+                            <label class="control control-radio">RWD
+                              <input type="radio" name="radio1" />
+                              <div class="control-indicator"></div>
+                            </label>
 
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-outline-danger btn-pill" data-dismiss="modal">Cancel</button>
-                              <button type="button" class="btn btn-outline-success btn-pill">Sell Car</button>
-                            </div>
+                            <label class="control control-radio">4x4
+                              <input type="radio" name="radio1" />
+                              <div class="control-indicator"></div>
+                            </label>
+                            <label class="control control-radio">AWD
+                              <input type="radio" name="radio1" />
+                              <div class="control-indicator"></div>
+                            </label>
                           </div>
                         </div>
-                      </div>
+                        <div class="form-group">
+                          <label for="exampleFormControlInput1">Mileage</label>
+                          <input type="number" class="form-control" id="yeaer" placeholder="23,673">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleFormControlInput1">Price</label>
+                          <input type="number" class="form-control" id="yeaer" placeholder="$7,999">
+                        </div>
+
+                        <div class="form-footer pt-4 pt-5 mt-4 border-top">
+                          <button type="submit" class="btn btn-primary btn-default">Submit</button>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>
+                                <div class="col-lg-6">
+                  <div class="card card-default">
+                    <div class="card-header card-header-border-bottom">
+                      <h2>Create Dealership</h2>
+                    </div>
+
+                    <div class="card-body">
+                      <form>
+                        <div class="form-group">
+                          <label for="exampleFormControlInput1">Email address</label>
+                          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter Email">
+                          <span class="mt-2 d-block">We'll never share your email with anyone else.</span>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleFormControlPassword">Password</label>
+                          <input type="password" class="form-control" id="exampleFormControlPassword" placeholder="Password">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleFormControlSelect12">Example select</label>
+                          <select class="form-control" id="exampleFormControlSelect12">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleFormControlSelect2">Example multiple select</label>
+                          <select multiple class="form-control" id="exampleFormControlSelect2">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleFormControlTextarea1">Example textarea</label>
+                          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleFormControlFile1">Example file input</label>
+                          <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                        </div>
+
+                        <div class="form-footer pt-4 pt-5 mt-4 border-top">
+                          <button type="submit" class="btn btn-primary btn-default">Submit</button>
+                          <button type="submit" class="btn btn-secondary btn-default">Cancel</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               </div> <!-- End Content -->
             </div> <!-- End Content Wrapper -->
           </div>
@@ -531,6 +548,20 @@ export default {
       } else {
         this.sortOrder = 1;
       }
+    },
+
+    createCar: function() {
+      let params = {
+            name: this.newDrinkName,
+            drink_type: this.newDrinkType
+      };
+      console.log("creating drink...", params)
+      axios.post("/api/drinks", params).then(response => {
+        console.log("this is the response data", response.data)
+        this.drinks.push(response.data);
+        this.newDrinkName = "";
+        this.newDrinkType = "";
+      })
     },
 
 
