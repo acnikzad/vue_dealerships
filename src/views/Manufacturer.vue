@@ -304,12 +304,18 @@
                         <div class="form-group">
                           <label>Make</label>
                           <select class="form-control input-sm" v-model="carMake">
+                            <option value="" disabled selected>Select Make</option>
                             <option>Acura</option>
+                            <option>Audi</option>
                             <option>BMW</option>
                             <option>Cheverolet</option>
                             <option>Dodge</option>
                             <option>Ford</option>
                             <option>Honda</option>
+                            <option>Lexus</option>
+                            <option>Mazda</option>
+                            <option>Mercedes-Benz</option>
+                            <option>Mini</option>
                             <option>Nissan</option>
                             <option>Subaru</option>
                             <option>Toyota</option>
@@ -338,6 +344,7 @@
                         <div class="form-group">
                           <label for="exampleFormControlSelect12">Color</label>
                           <select class="form-control input-sm" id="exampleFormControlSelect12" v-model="carColor">
+                            <option value="" disabled selected>Select Color</option>
                             <option>Blue</option>
                             <option>Black</option>
                             <option>White</option>
@@ -375,6 +382,7 @@
                         <div class="form-group">
                           <label for="exampleFormControlSelect12">Car Type</label>
                           <select class="form-control input-sm" id="exampleFormControlSelect12">
+                            <option value="" disabled selected>Select Car Type</option>
                             <option>Sedan</option>
                             <option>Coupe</option>
                             <option>SUV</option>
@@ -395,11 +403,11 @@
                         <div class="form-group">
                           <label for="exampleFormControlSelect12">Assign to Location</label>
                           <select class="form-control input-sm" id="">
-                            <option v-for="dealer in dealers">{{dealer.name}} - {{dealer.city}}</option>
+                            <option v-for="dealer in dealers" :value="dealer.id">{{dealer.name}} - {{dealer.city}}</option>
                           </select>
                         </div>
                         <div class="form-footer pt-4 pt-5 mt-4 border-top">
-                          <button type="submit" class="btn btn-primary btn-default">Submit</button>
+                          <button type="submit" class="btn btn-primary btn-default" v-on:click="createCar()">Submit</button>
                         </div>
                       </form>
                     </div>
@@ -492,7 +500,16 @@ export default {
       searchTerm: "",
       currentCar: {},
       sortAttribute: 'make',
-      sortOrder: 1
+      sortOrder: 1,
+      year: "",
+      make: "",
+      model: "",
+      color: "",
+      drivetrain: "",
+      car_type: "",
+      mileage: "",
+      price: "",
+      dealer_id: "",
     };
   },
   created: function() {
@@ -573,21 +590,30 @@ export default {
 
     createCar: function() {
       let params = {
-            name: this.year,
-            drink_type: this.make,
-            drink_type: this.make,
-            drink_type: this.make,
-            drink_type: this.make,
-            drink_type: this.make,
-            drink_type: this.make,
+            year: this.year,
+            make: this.make,
+            model: this.model,
+            color: this.color,
+            drivetrain: this.drivetrain,
+            car_type: this.car_type,
+            mileage: this.mileage,
+            price: this.price,
+            dealer_id: this.dealer_id
       };
-      console.log("creating drink...", params)
-      axios.post("/api/drinks", params).then(response => {
+      console.log("creating car...", params)
+      axios.post("/api/cars", params).then(response => {
         console.log("this is the response data", response.data)
-        this.drinks.push(response.data);
-        this.newDrinkName = "";
-        this.newDrinkType = "";
-      })
+        this.cars.push(response.data);
+        this.year = "";
+        this.make = "";
+        this.model = "";
+        this.color = "";
+        this.drivetrain = "";
+        this.car_type = "";
+        this.mileage = "";
+        this.price = "";
+        this.dealer_id = "";
+        })
     },
 
 
