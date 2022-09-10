@@ -296,14 +296,14 @@
                     </div>
 
                     <div class="card-body">
-                      <form>
+                      <form id="createCar">
                         <div class="form-group">
                           <label>Year</label>
-                          <input type="number" class="form-control input-sm" id="year" placeholder="2015" v-model="carYear">
+                          <input type="number" class="form-control input-sm" id="year" placeholder="2015" v-model="year">
                         </div>
                         <div class="form-group">
                           <label>Make</label>
-                          <select class="form-control input-sm" v-model="carMake">
+                          <select class="form-control input-sm" v-model="make">
                             <option value="" disabled selected>Select Make</option>
                             <option>Acura</option>
                             <option>Audi</option>
@@ -324,7 +324,7 @@
                         </div>
                         <div class="form-group">
                           <label for="exampleFormControlInput1">Model</label>
-                          <input type="text" class="form-control input-sm" id="year" placeholder="Accord" v-model="carModel">
+                          <input type="text" class="form-control input-sm" id="year" placeholder="Accord" v-model="model">
                         </div>
                      <!--    <div class="form-group">
                           <label for="exampleFormControlPassword">Model</label>
@@ -343,7 +343,7 @@
                         </div> -->
                         <div class="form-group">
                           <label for="exampleFormControlSelect12">Color</label>
-                          <select class="form-control input-sm" id="exampleFormControlSelect12" v-model="carColor">
+                          <select class="form-control input-sm" id="exampleFormControlSelect12" v-model="color">
                             <option value="" disabled selected>Select Color</option>
                             <option>Blue</option>
                             <option>Black</option>
@@ -360,28 +360,28 @@
                           </div>
                           <div class="col-12 col-md-9">
                             <label class="control control-radio">FWD
-                              <input type="radio" name="radio1" checked="checked" />
+                              <input type="radio" name="FWD" v-model="drivetrain" value="FWD"/>
                               <div class="control-indicator"></div>
                             </label>
 
                             <label class="control control-radio">RWD
-                              <input type="radio" name="radio1" />
+                              <input type="radio" name="RWD" v-model="drivetrain" value="RWD"/>
                               <div class="control-indicator"></div>
                             </label>
 
                             <label class="control control-radio">4x4
-                              <input type="radio" name="radio1" />
+                              <input type="radio" name="4x4" v-model="drivetrain" value="4x4"/>
                               <div class="control-indicator"></div>
                             </label>
                             <label class="control control-radio">AWD
-                              <input type="radio" name="radio1" />
+                              <input type="radio" name="AWD" v-model="drivetrain" value="AWD"/>
                               <div class="control-indicator"></div>
                             </label>
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="exampleFormControlSelect12">Car Type</label>
-                          <select class="form-control input-sm" id="exampleFormControlSelect12">
+                          <select class="form-control input-sm" id="exampleFormControlSelect12" v-model="car_type">
                             <option value="" disabled selected>Select Car Type</option>
                             <option>Sedan</option>
                             <option>Coupe</option>
@@ -394,15 +394,15 @@
                         </div>
                         <div class="form-group">
                           <label for="exampleFormControlInput1">Mileage</label>
-                          <input type="number" class="form-control input-sm" id="yeaer" placeholder="23,673">
+                          <input type="number" class="form-control input-sm" id="mileage" placeholder="23,673" v-model="mileage">
                         </div>
                         <div class="form-group">
                           <label for="exampleFormControlInput1">Price</label>
-                          <input type="number" class="form-control input-sm" id="yeaer" placeholder="$7,999">
+                          <input type="number" class="form-control input-sm" id="price" placeholder="$7,999" v-model="price">
                         </div>
                         <div class="form-group">
                           <label for="exampleFormControlSelect12">Assign to Location</label>
-                          <select class="form-control input-sm" id="">
+                          <select class="form-control input-sm" id="" v-model="dealer_id">
                             <option v-for="dealer in dealers" :value="dealer.id">{{dealer.name}} - {{dealer.city}}</option>
                           </select>
                         </div>
@@ -588,6 +588,19 @@ export default {
       }
     },
 
+    // createStudent: function() {
+    //   console.log("creating student...")
+    //   let params = {
+    //         first_name: this.newStudentFirstName,
+    //         last_name: this.newStudentLastName
+    //   };
+    //   axios.post("/api/students", params).then(response => {
+    //     this.students.push(response.data);
+    //     this.newStudentFirstName = "";
+    //     this.newStudentLastName = "";
+    //   })
+    // },
+
     createCar: function() {
       let params = {
             year: this.year,
@@ -600,9 +613,9 @@ export default {
             price: this.price,
             dealer_id: this.dealer_id
       };
-      console.log("creating car...", params)
+      console.log(params)
       axios.post("/api/cars", params).then(response => {
-        console.log("this is the response data", response.data)
+        // console.log("this is the response data", response.data)
         this.cars.push(response.data);
         this.year = "";
         this.make = "";
