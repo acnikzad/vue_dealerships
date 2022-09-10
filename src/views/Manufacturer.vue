@@ -280,7 +280,7 @@
                 </div>
 
                 <div class="media-body align-self-center">
-                  <h4 class="text-primary mb-2">This is Manufacturer</h4>
+                  <h4 class="text-primary mb-2">This is the Manufacturer</h4>
                   <!-- <p>{{dealer.car.count}}</p> -->
                 </div>
               </div>
@@ -298,12 +298,12 @@
                     <div class="card-body">
                       <form>
                         <div class="form-group">
-                          <label for="exampleFormControlInput1">Year</label>
-                          <input type="number" class="form-control" id="year" placeholder="2015">
+                          <label>Year</label>
+                          <input type="number" class="form-control input-sm" id="year" placeholder="2015" v-model="carYear">
                         </div>
                         <div class="form-group">
-                          <label for="exampleFormControlPassword">Make</label>
-                          <select class="form-control" v-model="newDrinkType">
+                          <label>Make</label>
+                          <select class="form-control input-sm" v-model="carMake">
                             <option>Acura</option>
                             <option>BMW</option>
                             <option>Cheverolet</option>
@@ -317,8 +317,12 @@
                           </select>
                         </div>
                         <div class="form-group">
+                          <label for="exampleFormControlInput1">Model</label>
+                          <input type="text" class="form-control input-sm" id="year" placeholder="Accord" v-model="carModel">
+                        </div>
+                     <!--    <div class="form-group">
                           <label for="exampleFormControlPassword">Model</label>
-                          <select class="form-control" v-model="newDrinkType">
+                          <select class="form-control input-sm" v-model="carModel">
                             <option>Acura</option>
                             <option>BMW</option>
                             <option>Cheverolet</option>
@@ -330,10 +334,10 @@
                             <option>Toyota</option>
                             <option>Volkswagon</option>
                           </select>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                           <label for="exampleFormControlSelect12">Color</label>
-                          <select class="form-control" id="exampleFormControlSelect12">
+                          <select class="form-control input-sm" id="exampleFormControlSelect12" v-model="carColor">
                             <option>Blue</option>
                             <option>Black</option>
                             <option>White</option>
@@ -369,14 +373,31 @@
                           </div>
                         </div>
                         <div class="form-group">
+                          <label for="exampleFormControlSelect12">Car Type</label>
+                          <select class="form-control input-sm" id="exampleFormControlSelect12">
+                            <option>Sedan</option>
+                            <option>Coupe</option>
+                            <option>SUV</option>
+                            <option>Truck</option>
+                            <option>Hatchback</option>
+                            <option>Crossover</option>
+                            <option>Wagon</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
                           <label for="exampleFormControlInput1">Mileage</label>
-                          <input type="number" class="form-control" id="yeaer" placeholder="23,673">
+                          <input type="number" class="form-control input-sm" id="yeaer" placeholder="23,673">
                         </div>
                         <div class="form-group">
                           <label for="exampleFormControlInput1">Price</label>
-                          <input type="number" class="form-control" id="yeaer" placeholder="$7,999">
+                          <input type="number" class="form-control input-sm" id="yeaer" placeholder="$7,999">
                         </div>
-
+                        <div class="form-group">
+                          <label for="exampleFormControlSelect12">Assign to Location</label>
+                          <select class="form-control input-sm" id="">
+                            <option v-for="dealer in dealers">{{dealer.name}} - {{dealer.city}}</option>
+                          </select>
+                        </div>
                         <div class="form-footer pt-4 pt-5 mt-4 border-top">
                           <button type="submit" class="btn btn-primary btn-default">Submit</button>
                         </div>
@@ -394,7 +415,7 @@
                       <form>
                         <div class="form-group">
                           <label for="exampleFormControlInput1">Email address</label>
-                          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter Email">
+                          <input type="email" class="form-control input-sm" id="exampleFormControlInput1" placeholder="Enter Email">
                           <span class="mt-2 d-block">We'll never share your email with anyone else.</span>
                         </div>
 
@@ -487,10 +508,10 @@ export default {
       this.cars = response.data;
       console.log("Cars...", this.cars)
     });
-    axios.get("/api/cars/inventory").then(response => {
-      this.inventory = response.data;
-      console.log("Current Inventory...", this.inventory)
-    });
+    // axios.get("/api/cars/inventory").then(response => {
+    //   this.inventory = response.data;
+    //   console.log("Current Inventory...", this.inventory)
+    // });
 
   },
 
@@ -552,8 +573,13 @@ export default {
 
     createCar: function() {
       let params = {
-            name: this.newDrinkName,
-            drink_type: this.newDrinkType
+            name: this.year,
+            drink_type: this.make,
+            drink_type: this.make,
+            drink_type: this.make,
+            drink_type: this.make,
+            drink_type: this.make,
+            drink_type: this.make,
       };
       console.log("creating drink...", params)
       axios.post("/api/drinks", params).then(response => {
