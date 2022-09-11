@@ -413,7 +413,31 @@
                     </div>
                   </div>
                 </div>
-                                <div class="col-lg-6">
+                <div class="col-lg-6">
+                  <div class="card card-default">
+                    <div class="card-header card-header-border-bottom">
+                      <h2>Create User</h2>
+                    </div>
+
+                    <div class="card-body">
+                      <form name ="userCreate" @submit.prevent="userCreate">
+                        <div class="form-group">
+                          <label for="exampleFormControlInput1">First Name</label>
+                          <input type="text" class="form-control input-sm" id="exampleFormControlInput1" placeholder="Aria" v-model="first_name">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleFormControlPassword">Last Name</label>
+                          <input type="text" class="form-control" id="exampleFormControlPassword" placeholder="Nikzad" v-model="last_name">
+                        </div>
+
+                        <div class="form-footer pt-4 pt-5 mt-4 border-top">
+                          <button type="submit" class="btn btn-primary btn-default" v-on:click="createUser()">Submit</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+
                   <div class="card card-default">
                     <div class="card-header card-header-border-bottom">
                       <h2>Create Dealership</h2>
@@ -422,51 +446,39 @@
                     <div class="card-body">
                       <form>
                         <div class="form-group">
-                          <label for="exampleFormControlInput1">Email address</label>
-                          <input type="email" class="form-control input-sm" id="exampleFormControlInput1" placeholder="Enter Email">
-                          <span class="mt-2 d-block">We'll never share your email with anyone else.</span>
+                          <label for="exampleFormControlInput1">Dealer Name</label>
+                          <input type="text" class="form-control input-sm" id="exampleFormControlInput1" placeholder="Arias Rad Rides">
                         </div>
 
                         <div class="form-group">
-                          <label for="exampleFormControlPassword">Password</label>
-                          <input type="password" class="form-control" id="exampleFormControlPassword" placeholder="Password">
+                          <label for="exampleFormControlPassword">Phone Number</label>
+                          <input type="text" class="form-control" id="exampleFormControlPassword" placeholder="(111) 111-1111">
                         </div>
 
                         <div class="form-group">
-                          <label for="exampleFormControlSelect12">Example select</label>
-                          <select class="form-control" id="exampleFormControlSelect12">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                          <label for="exampleFormControlPassword">Street Address</label>
+                          <input type="text" class="form-control" id="exampleFormControlPassword" placeholder="123 1st Street">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleFormControlPassword">City</label>
+                          <input type="text" class="form-control" id="exampleFormControlPassword" placeholder="Sacramento">
+                        </div>
+
+                         <div class="form-group">
+                          <label for="exampleFormControlPassword">Cash On Hand</label>
+                          <input type="number" class="form-control" id="exampleFormControlPassword" placeholder="40000">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleFormControlSelect12">Dealer Manager</label>
+                          <select class="form-control input-sm" id="" v-model="user_id">
+                            <option v-for="user in users" :value="user.id">{{user.first_name}} {{user.last_name}}</option>
                           </select>
-                        </div>
-
-                        <div class="form-group">
-                          <label for="exampleFormControlSelect2">Example multiple select</label>
-                          <select multiple class="form-control" id="exampleFormControlSelect2">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </select>
-                        </div>
-
-                        <div class="form-group">
-                          <label for="exampleFormControlTextarea1">Example textarea</label>
-                          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                          <label for="exampleFormControlFile1">Example file input</label>
-                          <input type="file" class="form-control-file" id="exampleFormControlFile1">
                         </div>
 
                         <div class="form-footer pt-4 pt-5 mt-4 border-top">
-                          <button type="submit" class="btn btn-primary btn-default">Submit</button>
-                          <button type="submit" class="btn btn-secondary btn-default">Cancel</button>
+                          <button type="submit" class="btn btn-primary btn-default" v-on:click="createDealer()">Submit</button>
                         </div>
                       </form>
                     </div>
@@ -510,6 +522,11 @@ export default {
       mileage: "",
       price: "",
       dealer_id: "",
+      first_name: "",
+      last_name: "",
+      email: "",
+      password: "",
+
     };
   },
   created: function() {
@@ -600,7 +617,6 @@ export default {
     //     this.newStudentLastName = "";
     //   })
     // },
-
     createCar: function() {
       let params = {
             year: this.year,
@@ -615,7 +631,7 @@ export default {
       };
       console.log(params)
       axios.post("/api/cars", params).then(response => {
-        // console.log("this is the response data", response.data)
+        console.log("this is the response data", response.data)
         this.cars.push(response.data);
         this.year = "";
         this.make = "";
@@ -629,7 +645,25 @@ export default {
         })
     },
 
-
+    createUser: function() {
+      console.log("creating")
+      this.email = this.first_name.toLowerCase()+"@"+this.last_name.toLowerCase()+".com"
+      let params = {
+            first_name: this.first_name,
+            last_name: this.last_name,
+            email: this.email,
+            password: "password"
+      };
+      console.log(params)
+      axios.post("/api/users", params).then(response => {
+        console.log("this is the response data", response.data)
+        this.users.push(response.data);
+        this.first_name = "";
+        this.last_name = "";
+        this.email = "";
+        this.password = "";
+        })
+    },
   }
 };
 </script>
