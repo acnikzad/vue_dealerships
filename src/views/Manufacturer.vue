@@ -447,27 +447,27 @@
                       <form>
                         <div class="form-group">
                           <label for="exampleFormControlInput1">Dealer Name</label>
-                          <input type="text" class="form-control input-sm" id="exampleFormControlInput1" placeholder="Arias Rad Rides">
+                          <input type="text" class="form-control input-sm" id="exampleFormControlInput1" placeholder="Arias Rad Rides" v-model="dealer_name">
                         </div>
 
                         <div class="form-group">
                           <label for="exampleFormControlPassword">Phone Number</label>
-                          <input type="text" class="form-control" id="exampleFormControlPassword" placeholder="(111) 111-1111">
+                          <input type="text" class="form-control" id="exampleFormControlPassword" placeholder="(111) 111-1111" v-model="phone">
                         </div>
 
                         <div class="form-group">
                           <label for="exampleFormControlPassword">Street Address</label>
-                          <input type="text" class="form-control" id="exampleFormControlPassword" placeholder="123 1st Street">
+                          <input type="text" class="form-control" id="exampleFormControlPassword" placeholder="123 1st Street" v-model="address">
                         </div>
 
                         <div class="form-group">
                           <label for="exampleFormControlPassword">City</label>
-                          <input type="text" class="form-control" id="exampleFormControlPassword" placeholder="Sacramento">
+                          <input type="text" class="form-control" id="exampleFormControlPassword" placeholder="Sacramento" v-model="city">
                         </div>
 
                          <div class="form-group">
                           <label for="exampleFormControlPassword">Cash On Hand</label>
-                          <input type="number" class="form-control" id="exampleFormControlPassword" placeholder="40000">
+                          <input type="number" class="form-control" id="exampleFormControlPassword" placeholder="40000" v-model="cash">
                         </div>
 
                         <div class="form-group">
@@ -513,6 +513,7 @@ export default {
       currentCar: {},
       sortAttribute: 'make',
       sortOrder: 1,
+
       year: "",
       make: "",
       model: "",
@@ -522,10 +523,18 @@ export default {
       mileage: "",
       price: "",
       dealer_id: "",
+
       first_name: "",
       last_name: "",
       email: "",
       password: "",
+
+      dealer_name: "",
+      phone: "",
+      address: "",
+      city: "",
+      cash: "",
+      user_id: ""
 
     };
   },
@@ -662,6 +671,29 @@ export default {
         this.last_name = "";
         this.email = "";
         this.password = "";
+        })
+    },
+
+    createDealer: function() {
+      let params = {
+            name: this.dealer_name,
+            phone: this.phone,
+            address: this.address,
+            city: this.city,
+            cash: this.cash,
+            user_id: this.user_id,
+            password: "password"
+      };
+      console.log(params)
+      axios.post("/api/dealers", params).then(response => {
+        console.log("this is the response data", response.data)
+        this.dealers.push(response.data);
+        this.dealer_name = "";
+        this.phone = "";
+        this.address = "";
+        this.city = "";
+        this.cash = "";
+        this.user_id = "";
         })
     },
   }
