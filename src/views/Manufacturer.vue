@@ -271,23 +271,12 @@
               </div>
             </nav>
           </header>
-          
-          <div class="row">
-            <div class="col-md-6 col-lg-6 col-xl-3">
-              <div class="media widget-media p-4 bg-white border">
-                <div class="icon rounded-circle mr-4 bg-primary">
-                  <i class="mdi mdi-account-outline text-white "></i>
-                </div>
-
-                <div class="media-body align-self-center">
-                  <h4 class="text-primary mb-2">This is the Manufacturer</h4>
-                  <!-- <p>{{dealer.car.count}}</p> -->
-                </div>
-              </div>
-            </div>
-          </div>
           <div class="content-wrapper">
             <div class="content">
+
+              <div class="breadcrumb-wrapper">
+                <h1>Manufacturer</h1>
+              </div>
               <div class="row">
                 <div class="col-lg-6">
                   <div class="card card-default">

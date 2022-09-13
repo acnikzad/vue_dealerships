@@ -321,6 +321,9 @@
                     <hr>
                   </div>
                 </transition-group> -->
+                <div class="breadcrumb-wrapper">
+                  <h1>Manufacturer</h1>
+                </div>
 
                 <div class="row">
                   <div class="col-12">
@@ -328,7 +331,7 @@
                       <div class="card-header card-header-border-bottom d-flex justify-content-between">
                         <h2>Inventory</h2>
                       </div>
-                      <div class="row justify-content-between top-information">
+                    <!--   <div class="row justify-content-between top-information">
                         <div class="dataTables_length" id="basic-data-table_length">
                           <label>Show <select name="basic-data-table_length" aria-controls="basic-data-table" class="custom-select custom-select-sm form-control form-control-sm">
                             <option value="10">10</option>
@@ -340,40 +343,12 @@
                         <div id="basic-data-table_filter" class="dataTables_filter">
                           <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="basic-data-table"></label>
                         </div>
-                      </div>
-<!--                        <table id="basic-data-table" class="table nowrap" style="width:100%">
-                        <thead>
-                         <tr>
-                          <th>First name</th>
-                          <th>Last name</th>
-                          <th>Position</th>
-                          <th>Office</th>
-                          <th>Age</th>
-                          <th>Start date</th>
-                          <th>Salary</th>
-                          <th>Extn.</th>
-                          <th>E-mail</th>
-                         </tr>
-                        </thead>
+                      </div> -->
 
-                        <tbody>
-                         <tr>
-                          <td>Tiger</td>
-                          <td>Nixon</td>
-                          <td>System Architect</td>
-                          <td>Edinburgh</td>
-                          <td>61</td>
-                          <td>2011/04/25</td>
-                          <td>$320,800</td>
-                          <td>5421</td>
-                          <td>t.nixon@datatables.net</td>
-                         </tr>
-                        </tbody>
-                       </table> -->
                       <div class="card-body">
                         <div class="hoverable-data-table">
                           <table id="hoverable-data-table" class="table table-hover nowrap" style="width:100%">
-                            <thead>
+                            <!-- <thead>
                               <tr>
                                 <th>Year</th>
                                 <th>Make</th>
@@ -386,8 +361,8 @@
                                 <th>Dealership</th>
                                 <th>Sell</th>
                               </tr>
-                            </thead>
-                            <tbody>
+                            </thead> -->
+                          <!--   <tbody>
                               <tr v-for="car in inventory">
                                 <td>{{car.year}}</td>
                                 <td>{{car.make}}</td>
@@ -400,7 +375,7 @@
                                 <td>{{car.dealer.name}}</td>
                                 <td><button type="button" class="mb-1 btn btn-sm btn-outline-success" data-toggle="modal" data-target="#exampleModal">Sell</button></td>
                               </tr>
-                            </tbody>
+                            </tbody> -->
                           </table>
                         </div>
                       </div>
@@ -457,6 +432,7 @@ export default {
       sortOrder: 1
     };
   },
+
   created: function() {
     axios.get("/api/users").then(response => {
       this.users = response.data;
@@ -469,10 +445,71 @@ export default {
     axios.get("/api/cars").then(response => {
       this.cars = response.data;
       console.log("Cars...", this.cars)
+   //    $(document).ready(function() {
+   //    $('#hoverable-data-table').DataTable(
+   //      {
+   //        data: this.cars,
+   //        columns: [
+   //            { data: 'year' },
+   //            { data: 'make' },
+   //            { data: 'model' },
+   //            { data: 'color' },
+   //            { data: 'car_type' },
+   //            { data: 'drivetrain' },
+   //            { data: 'mileage' },
+   //            { data: 'price' },
+   //            { data: 'dealer_id' }
+   //        ],
+   //    });
+   // });
     });
     axios.get("/api/cars/inventory").then(response => {
       this.inventory = response.data;
-      console.log("Current Inventory...", this.inventory)
+      console.log("Current Inventory...", this.inventory);
+      $(document).ready(function() {
+      $('#hoverable-data-table').DataTable(
+        {
+          data: response.data,
+          columns: [
+              { 
+                title: 'Year',
+                data: 'year' 
+              },
+              { 
+                title: 'Make',
+                data: 'make' 
+              },
+              { 
+                title: 'Model',
+                data: 'model' 
+              },
+              { 
+                title: 'Color',
+                data: 'color' 
+              },
+              { 
+                title: 'Type',
+                data: 'car_type' 
+              },
+              { 
+                title: 'Drivetrain',
+                data: 'drivetrain'
+              },
+              { 
+                title: 'Mileage',
+                data: 'mileage' 
+              },
+              { 
+                title: 'Price',
+                data: 'price'
+              },
+              { 
+                title: 'Dealership',
+                data: 'dealer.name' 
+              }
+          ],
+      });
+   });
     });
 
   },
