@@ -5,7 +5,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-6 col-md-10">
           <div class="card">
-            <div class="card-header bg-primary">
+            <!-- <div class="card-header bg-primary">
               <div class="app-brand">
                 <a href="/index.html">
                   <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="30" height="33"
@@ -18,7 +18,7 @@
                   <span class="brand-name">Dealership Login</span>
                 </a>
               </div>
-            </div>
+            </div> -->
             <div class="card-body p-5">
               <h4 class="text-dark mb-5">Sign In</h4>
               <form v-on:submit.prevent="submit()">
@@ -39,37 +39,48 @@
                       </div>
                     </div>
                     <button type="submit" class="btn btn-lg btn-primary btn-block mb-4">Sign In</button>
-                    <p>Don't have an account yet ?
-                      <a class="text-blue" href="sign-up.html">Try These</a>
-                    </p>
                     <div class="row">
-                      <div class="col-md col-lg col-xl">
-                        <div class="media widget-media p-4 bg-white border">
-                          <div class="icon rounded-circle mr-4 bg-primary">
-                            <i class="mdi mdi-account-outline text-white "></i>
+	                    <div class="col-12">
+		
+                        <!-- Recent Order Table -->
+                        <div class="card card-table-border-none recent-orders" id="">
+                          <div class="card-header justify-content-between">
+                            <h2>Credentials</h2>
                           </div>
-
-                          <div class="media-body align-self-center">
-                            <h4 class="text-primary mb-2">bob@samos.com</h4>
-                            <p>password</p>
+                          <div class="card-body">
+                            <table class="table card-table table-responsive table-responsive-large" style="width:50%">
+                              <thead>
+                                <tr>
+                                  <th>Email</th>
+                                  <th>Password</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td >manu@facturer.com</td>
+                                  <td >
+                                    <a class="text-dark" href="">password</a>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td >matt@grove.com</td>
+                                  <td >
+                                    <a class="text-dark" href="">password</a>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td >bob@samos.com</td>
+                                  <td >
+                                    <a class="text-dark" href="">password</a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md col-lg col-xl">
-                        <div class="media widget-media p-4 bg-white border">
-                          <div class="icon rounded-circle mr-4 bg-warning">
-                            <i class="mdi mdi-account-outline text-white "></i>
-                          </div>
 
-                          <div class="media-body align-self-center">
-                            <h4 class="text-warning mb-2">matt@grove.com</h4>
-                            <p>password</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </form>

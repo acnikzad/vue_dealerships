@@ -116,7 +116,7 @@
                   <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#components"
                     aria-expanded="false" aria-controls="components">
                     <i class="mdi mdi-folder-multiple-outline"></i>
-                    <span class="nav-text">Components</span> <b class="caret"></b>
+                    <a href="http://localhost:8080/logout">Logout</a>
                   </a>
 
                   <ul class="collapse " id="components" data-parent="#sidebar-menu">
@@ -143,99 +143,10 @@
                       <li class="has-sub ">
                         <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#buttons"
                           aria-expanded="false" aria-controls="buttons">
-                          <span class="nav-text">Buttons</span> <b class="caret"></b>
+                          <span class="nav-text"><a href="http://localhost:8080/logout">Logout</a></span> <b class="caret"></b>
                         </a>
-
-                        <ul class="collapse " id="buttons">
-                          <div class="sub-menu">
-                            <li class="">
-                              <a href="button-default.html">Button Default</a>
-                            </li>
-
-                           <li class="">
-                              <a href="button-dropdown.html">Button Dropdown</a>
-                            </li>
-
-                           <li class="">
-                              <a href="button-group.html">Button Group</a>
-                            </li>
-
-                           <li class="">
-                              <a href="button-social.html">Button Social</a>
-                            </li>
-
-                           <li class="">
-                              <a href="button-loading.html">Button Loading</a>
-                            </li>
-                          </div>
-                        </ul>
                       </li>
                       
-                      <li class="">
-                        <a class="sidenav-item-link" href="card.html">
-                          <span class="nav-text">Card</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="carousel.html">
-                          <span class="nav-text">Carousel</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="collapse.html">
-                          <span class="nav-text">Collapse</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="list-group.html">
-                          <span class="nav-text">List Group</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="modal.html">
-                          <span class="nav-text">Modal</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="pagination.html">
-                          <span class="nav-text">Pagination</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="popover-tooltip.html">
-                          <span class="nav-text">Popover & Tooltip</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="progress-bar.html">
-                          <span class="nav-text">Progress Bar</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="spinner.html">
-                          <span class="nav-text">Spinner</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="switcher.html">
-                          <span class="nav-text">Switcher</span>
-                        </a>
-                      </li>
-
-                      <li class="">
-                        <a class="sidenav-item-link" href="tab.html">
-                          <span class="nav-text">Tab</span>
-                        </a>
-                      </li>
                     </div>
                   </ul>
                 </li>
@@ -322,33 +233,15 @@
                   </div>
                 </transition-group> -->
                 <div class="breadcrumb-wrapper">
-                  <h1>Manufacturer</h1>
+                  <h1>User</h1>
                 </div>
-
-                <div class="row">
+     <!--            <div class="row">
                   <div class="col-12">
                     <div class="card card-default">
-                      <div class="card-header card-header-border-bottom d-flex justify-content-between">
-                        <h2>Inventory</h2>
-                      </div>
-                    <!--   <div class="row justify-content-between top-information">
-                        <div class="dataTables_length" id="basic-data-table_length">
-                          <label>Show <select name="basic-data-table_length" aria-controls="basic-data-table" class="custom-select custom-select-sm form-control form-control-sm">
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                          </select> entries</label>
-                        </div>
-                        <div id="basic-data-table_filter" class="dataTables_filter">
-                          <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="basic-data-table"></label>
-                        </div>
-                      </div> -->
-
                       <div class="card-body">
                         <div class="hoverable-data-table">
-                          <table id="hoverable-data-table" class="table table-hover nowrap" style="width:100%">
-                            <!-- <thead>
+                          <table>
+                            <thead>
                               <tr>
                                 <th>Year</th>
                                 <th>Make</th>
@@ -361,8 +254,8 @@
                                 <th>Dealership</th>
                                 <th>Sell</th>
                               </tr>
-                            </thead> -->
-                          <!--   <tbody>
+                            </thead>
+                            <tbody>
                               <tr v-for="car in inventory">
                                 <td>{{car.year}}</td>
                                 <td>{{car.make}}</td>
@@ -375,7 +268,26 @@
                                 <td>{{car.dealer.name}}</td>
                                 <td><button type="button" class="mb-1 btn btn-sm btn-outline-success" data-toggle="modal" data-target="#exampleModal">Sell</button></td>
                               </tr>
-                            </tbody> -->
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card card-default">
+                      <div class="card-header card-header-border-bottom d-flex justify-content-between">
+                        <h2>Inventory</h2>
+                      </div>
+
+                      <div class="card-body">
+                        <div class="hoverable-data-table">
+                          <table id="hoverable-data-table" class="table table-hover nowrap" style="width:100%">
+                          
                           </table>
                         </div>
                       </div>
@@ -420,6 +332,7 @@ import axios from "axios";
 export default {
   data: function() {
     return {
+      currentUser: [],
       users: [],
       dealers: [],
       cars: [],
@@ -445,23 +358,6 @@ export default {
     axios.get("/api/cars").then(response => {
       this.cars = response.data;
       console.log("Cars...", this.cars)
-   //    $(document).ready(function() {
-   //    $('#hoverable-data-table').DataTable(
-   //      {
-   //        data: this.cars,
-   //        columns: [
-   //            { data: 'year' },
-   //            { data: 'make' },
-   //            { data: 'model' },
-   //            { data: 'color' },
-   //            { data: 'car_type' },
-   //            { data: 'drivetrain' },
-   //            { data: 'mileage' },
-   //            { data: 'price' },
-   //            { data: 'dealer_id' }
-   //        ],
-   //    });
-   // });
     });
     axios.get("/api/cars/inventory").then(response => {
       this.inventory = response.data;
@@ -541,6 +437,14 @@ export default {
           this.email = "";
           this.password = "";
         });
+      // axios
+      //   .get("/api/user", params)
+      //   .then(response => {
+      //     axios.defaults.headers.common["Authorization"] =
+      //       "Bearer " + response.data.jwt;
+      //     localStorage.setItem("jwt", response.data.jwt);
+      //     this.$router.push("/HomeView");
+      //   })
     },
 
     selectCar: function(theCar) {
